@@ -1,32 +1,39 @@
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
-        /*
-        * while True
-        *
-        *   give user 3 options (dep/with/make acct)
-        *
-        *   if user has no acct                         Account
-        *       if create acct
-        *           make new acct                       Factory
-        *       if do something                         Command
-        *           tell them off
-        *
-        *   if user has acct                            Account
-        *       if create acct
-        *           delete current acct
-        *           make new acct                       Factory
-        *       if withdraw                             Command
-        *           fire withdraw command
-        *           notify bank acct to update total    Observer
-        *           give user cash                      Chain of Responsibility
-        *       if deposit
-        *           fire deposit command                Command
-        *           notify bank acct to update total    Observer
-        *
-        *
-        *
-        *
-        *
-        */
+        Scanner sc = new Scanner(System.in);
+        BankAccount account;
+
+        while (true) {
+            System.out.println("What would you like to do?\n" +
+                    "Type W for withdraw, D for deposit, or A to make an account:");
+            String action = sc.nextLine().toUpperCase();
+
+            switch (action) {
+                case "W":
+                    // check account total and fire withdraw command    *****************
+                    break;
+                case "D":
+                    // check account total and fire deposit command     *****************
+                    break;
+                case "A":
+                    BankAccountFactory accountFactory = new BankAccountFactory();
+
+                    System.out.println("Please enter a username:");
+                    String username = sc.nextLine();
+
+                    System.out.println("Please enter a password:");
+                    String password = sc.nextLine();
+
+                    account = accountFactory.createAccount(username, password);
+
+                    System.out.println("Account created successfully!");
+                    break;
+                default:
+                    System.out.println("Invalid input!");
+                    break;
+            }
+        }
     }
 }
