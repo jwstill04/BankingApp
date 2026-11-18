@@ -7,5 +7,5 @@ public abstract class WithdrawalHandler {
         this.nextHandler = nextHandler;
     }
 
-    public abstract boolean handle(BankAccount account, float amount0;
+    public abstract boolean handle(BankAccount account, float amount0);
 }
