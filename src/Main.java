@@ -3,7 +3,9 @@ import java.util.Scanner;
 public class Main {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        BankAccount account;
+        BankAccount account = null;
+
+        CommandController controller = new CommandController();
 
         while (true) {
             System.out.println("What would you like to do?\n" +
@@ -12,9 +14,33 @@ public class Main {
 
             switch (action) {
                 case "W":
-                    // check account total and fire withdraw command    *****************
+                    if (account == null) {
+                        System.out.println("You must create an account first!");
+                        break;
+                    }
+                    if (account.balance <= 0) {
+                        System.out.println("You don't have enough balance to withdraw!");
+                        break;
+                    }
+
+                    System.out.println("Your current balance is " + account.balance
+                            + "\nHow much would you like to withdraw?");
+                    float amount = sc.nextFloat();
+
+                    Command withdrawCommand = new WithdrawCommand(account, amount);
+                    controller.setCommand(withdrawCommand);
+                    controller.executeCommand();
+
+                    // Give out cash ********************************
+
+                    System.out.println("Your new balance is " + account.balance);
+
                     break;
                 case "D":
+                    if (account == null) {
+                        System.out.println("You must create an account first!");
+                        break;
+                    }
                     // check account total and fire deposit command     *****************
                     break;
                 case "A":
