@@ -44,7 +44,7 @@ public class Main {
                     // check account total and fire deposit command     *****************
                     break;
                 case "A":
-                    BankAccountFactory accountFactory = new ObservedBankAccountFactory();
+                    BankAccountFactory accountFactory = new BankAccountFactory();
 
                     System.out.println("Please enter a username:");
                     String username = sc.nextLine();
