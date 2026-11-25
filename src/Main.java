@@ -31,7 +31,18 @@ public class Main {
                     controller.setCommand(withdrawCommand);
                     controller.executeCommand();
 
-                    // Give out cash ********************************
+                    HundredDollarHandler hundred = new HundredDollarHandler();
+                    TwentyDollarHandler twenty = new TwentyDollarHandler();
+                    TenDollarHandler ten = new TenDollarHandler();
+                    FiveDollarHandler five = new FiveDollarHandler();
+                    OneDollarHandler one = new OneDollarHandler();
+
+                    hundred.setNextHandler(twenty);
+                    twenty.setNextHandler(ten);
+                    ten.setNextHandler(five);
+                    five.setNextHandler(one);
+
+                    hundred.handle(account, amount);
 
                     System.out.println("Your new balance is " + account.balance);
 
